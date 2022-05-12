@@ -1,0 +1,6 @@
+{
+    "editor.formatOnPaste": true,
+
+    "rust-analyzer.checkOnSave.allTargets": false,
+    "rust-analyzer.checkOnSave.target": "riscv32imc-unknown-none-elf",
+}
