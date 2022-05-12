@@ -1,9 +1,16 @@
 #![no_std]
 #![feature(alloc_error_handler)]
+#![cfg_attr(target_arch = "xtensa", feature(asm_experimental_arch))]
 
 use core::alloc::{GlobalAlloc, Layout};
 
 use log::trace;
+
+#[cfg(target_arch = "xtensa")]
+mod critical_section_xtensa_singlecore;
+
+#[cfg(target_arch = "xtensa")]
+critical_section::custom_impl!(critical_section_xtensa_singlecore::XtensaSingleCoreCriticalSection);
 
 /// A simple allocator just using the internal `malloc` implementation.
 /// Please note: This currently doesn't honor a non-standard aligment and will

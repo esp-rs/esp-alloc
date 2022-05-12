@@ -4,5 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-critical-section = "0.2.7"
-log              = "0.4.17"
+log = "0.4.17"
+
+[dependencies.critical-section]
+version  = "0.2.7"
+features = ["custom-impl"]
+
+[target.xtensa-esp32-none-elf.dependencies]
+xtensa-lx    = { version = "0.7",  features = ["esp32"] }
+xtensa-lx-rt = { version = "0.11", features = ["esp32"] }
