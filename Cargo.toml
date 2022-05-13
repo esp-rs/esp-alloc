@@ -6,10 +6,10 @@ edition = "2021"
 [dependencies]
 log = "0.4.17"
 
-[dependencies.critical-section]
-version  = "0.2.7"
-features = ["custom-impl"]
+[target.'cfg(target_arch = "riscv32")'.dependencies]
+critical-section = "0.2.7"
 
 [target.xtensa-esp32-none-elf.dependencies]
-xtensa-lx    = { version = "0.7",  features = ["esp32"] }
-xtensa-lx-rt = { version = "0.11", features = ["esp32"] }
+critical-section = { version = "0.2.7", features = ["custom-impl"]}
+xtensa-lx        = { version = "0.7",   features = ["esp32"] }
+xtensa-lx-rt     = { version = "0.11",  features = ["esp32"] }

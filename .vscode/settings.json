@@ -2,6 +2,6 @@
     "editor.formatOnPaste": true,
 
     "rust-analyzer.checkOnSave.allTargets": false,
-    "rust-analyzer.checkOnSave.target": "riscv32imc-unknown-none-elf",
+    "rust-analyzer.checkOnSave.target": "riscv32i-unknown-none-elf",
     // "rust-analyzer.checkOnSave.target": "xtensa-esp32-none-elf",
 }
