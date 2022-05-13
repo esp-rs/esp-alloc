@@ -1,0 +1,45 @@
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+  workflow_dispatch:
+
+name: CI
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check-riscv:
+    name: Check RISC-V
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          target: riscv32i-unknown-none-elf
+          toolchain: nightly
+          components: rust-src
+          default: true
+      - uses: Swatinem/rust-cache@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: -Zbuild-std=core --target=riscv32i-unknown-none-elf
+
+  check-xtensa:
+    name: Check Xtensa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: esp-rs/xtensa-toolchain@v1.1
+        with:
+          default: true
+          ldproxy: false
+      - uses: Swatinem/rust-cache@v1
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: -Zbuild-std=core --target=xtensa-esp32-none-elf
