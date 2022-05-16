@@ -19,7 +19,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          target: riscv32i-unknown-none-elf
+          target: riscv32imc-unknown-none-elf
           toolchain: nightly
           components: rust-src
           default: true
@@ -27,7 +27,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: check
-          args: -Zbuild-std=core --target=riscv32i-unknown-none-elf
+          args: -Zbuild-std=core --target=riscv32imc-unknown-none-elf
 
   check-xtensa:
     name: Check Xtensa
