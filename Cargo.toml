@@ -13,9 +13,7 @@ default-features = false
 features         = ["const_mut_refs"]
 
 [target.'cfg(target_arch = "riscv32")'.dependencies]
-critical-section = "0.2.7"
-riscv            = "0.8.0"
+riscv = "0.8.0"
 
 [target.xtensa-esp32-none-elf.dependencies]
-critical-section = { version = "0.2.7",  features = ["custom-impl"]}
-xtensa-lx        = { version = "0.7.0",  features = ["esp32"] }
+xtensa-lx = { version = "0.7.0",  features = ["esp32"] }
