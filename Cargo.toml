@@ -3,6 +3,9 @@ name    = "esp-alloc"
 version = "0.1.0"
 edition = "2021"
 
+[package.metadata.docs.rs]
+default-target = "riscv32imc-unknown-none-elf"
+
 [dependencies]
 bare-metal = "1.0.0"
 
