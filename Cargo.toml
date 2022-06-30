@@ -12,4 +12,4 @@ critical-section = "0.2.7"
 [target.xtensa-esp32-none-elf.dependencies]
 critical-section = { version = "0.2.7", features = ["custom-impl"]}
 xtensa-lx        = { version = "0.7",   features = ["esp32"] }
-xtensa-lx-rt     = { version = "0.11",  features = ["esp32"] }
+xtensa-lx-rt     = { version = "0.12",  features = ["esp32"] }
