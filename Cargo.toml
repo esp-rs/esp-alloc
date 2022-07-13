@@ -1,7 +1,25 @@
 [package]
 name    = "esp-alloc"
 version = "0.1.0"
-edition = "2021"
+authors = [
+    "Björn Quentin <bjoern.quentin@mobile-j.de>",
+    "Jesse Braham <jesse@beta7.io>",
+]
+edition     = "2021"
+description = "A heap allocator for Espressif devices"
+repository  = "https://github.com/esp-rs/esp-alloc"
+license     = "MIT OR Apache-2.0"
+
+keywords = [
+    "allocator",
+    "esp32",
+    "riscv",
+    "xtensa",
+]
+categories = [
+    "memory-management",
+    "no-std",
+]
 
 [package.metadata.docs.rs]
 default-target = "riscv32imc-unknown-none-elf"
@@ -26,4 +44,8 @@ linked_list_allocator = "0.10.1"
 xtensa-lx             = { version = "0.7.0",  features = ["esp32s3"] }
 
 [features]
+# Provides a basic `#[alloc_error_handler]` which simply panics when an
+# allocation fails. If this feature is NOT enabled, which it is not by
+# default, then a handler needs to be defined in any binary depending on
+# this package.
 oom-handler = []
