@@ -53,7 +53,7 @@ impl EspHeap {
     /// This function must be called BEFORE you run any code that makes use of
     /// the allocator.
     ///
-    /// `start_addr` is the address where the heap will be located.
+    /// `heap_bottom` is a pointer to the location of the bottom of the heap.
     ///
     /// `size` is the size of the heap in bytes.
     ///
@@ -71,8 +71,8 @@ impl EspHeap {
     ///
     /// - This function must be called exactly ONCE.
     /// - `size > 0`
-    pub unsafe fn init(&self, start_addr: usize, size: usize) {
-        interrupt::free(|cs| self.heap.borrow(*cs).borrow_mut().init(start_addr, size));
+    pub unsafe fn init(&self, heap_bottom: *mut u8, size: usize) {
+        interrupt::free(|cs| self.heap.borrow(*cs).borrow_mut().init(heap_bottom, size));
     }
 
     /// Returns an estimate of the amount of bytes in use.
