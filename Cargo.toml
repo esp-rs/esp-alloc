@@ -24,3 +24,6 @@ xtensa-lx             = { version = "0.7.0",  features = ["esp32s2"] }
 [target.xtensa-esp32s3-none-elf.dependencies]
 linked_list_allocator = "0.9.1"
 xtensa-lx             = { version = "0.7.0",  features = ["esp32s3"] }
+
+[features]
+oom-handler = []

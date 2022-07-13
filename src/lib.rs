@@ -11,6 +11,7 @@
 //! `nightly` release channel.
 
 #![no_std]
+#![cfg_attr(feature = "oom-handler", feature(alloc_error_handler))]
 
 use core::{
     alloc::{GlobalAlloc, Layout},
@@ -24,6 +25,12 @@ use linked_list_allocator::Heap;
 use riscv::interrupt;
 #[cfg(target_arch = "xtensa")]
 use xtensa_lx::interrupt;
+
+#[cfg(feature = "oom-handler")]
+#[alloc_error_handler]
+fn oom(_: core::alloc::Layout) -> ! {
+    panic!("Allocation failed, out of memory");
+}
 
 pub struct EspHeap {
     heap: Mutex<RefCell<Heap>>,
