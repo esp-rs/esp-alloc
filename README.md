@@ -9,23 +9,7 @@ Currently supports:
 - ESP32-S2
 - ESP32-S3
 
-**NOTE:** using this as your global allocator requires using Rust's
-`nightly` release channel.
-
-## Build Notes
-
-In order to build this crate a valid target must be specified:
-
-| Architecture |                                       Targets                                       |
-| :----------: | :---------------------------------------------------------------------------------: |
-|    RISC-V    |                            `riscv32imc-unknown-none-elf`                            |
-|    Xtensa    | `xtensa-esp32-none-elf`<br/>`xtensa-esp32s2-none-elf`<br/>`xtensa-esp32s3-none-elf` |
-
-For example:
-
-```bash
-$ cargo build --target=riscv32imc-unknown-none-elf
-```
+**NOTE:** using this as your global allocator requires using Rust's `nightly` release channel.
 
 ## License
 

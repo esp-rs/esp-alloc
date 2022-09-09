@@ -19,12 +19,8 @@ use core::{
     ptr::{self, NonNull},
 };
 
-use bare_metal::Mutex;
+use critical_section::Mutex;
 use linked_list_allocator::Heap;
-#[cfg(target_arch = "riscv32")]
-use riscv::interrupt;
-#[cfg(target_arch = "xtensa")]
-use xtensa_lx::interrupt;
 
 #[cfg(feature = "oom-handler")]
 #[alloc_error_handler]
@@ -72,25 +68,25 @@ impl EspHeap {
     /// - This function must be called exactly ONCE.
     /// - `size > 0`
     pub unsafe fn init(&self, heap_bottom: *mut u8, size: usize) {
-        interrupt::free(|cs| self.heap.borrow(*cs).borrow_mut().init(heap_bottom, size));
+        critical_section::with(|cs| self.heap.borrow(cs).borrow_mut().init(heap_bottom, size));
     }
 
     /// Returns an estimate of the amount of bytes in use.
     pub fn used(&self) -> usize {
-        interrupt::free(|cs| self.heap.borrow(*cs).borrow_mut().used())
+        critical_section::with(|cs| self.heap.borrow(cs).borrow_mut().used())
     }
 
     /// Returns an estimate of the amount of bytes available.
     pub fn free(&self) -> usize {
-        interrupt::free(|cs| self.heap.borrow(*cs).borrow_mut().free())
+        critical_section::with(|cs| self.heap.borrow(cs).borrow_mut().free())
     }
 }
 
 unsafe impl GlobalAlloc for EspHeap {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        interrupt::free(|cs| {
+        critical_section::with(|cs| {
             self.heap
-                .borrow(*cs)
+                .borrow(cs)
                 .borrow_mut()
                 .allocate_first_fit(layout)
                 .ok()
@@ -99,9 +95,9 @@ unsafe impl GlobalAlloc for EspHeap {
     }
 
     unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
-        interrupt::free(|cs| {
+        critical_section::with(|cs| {
             self.heap
-                .borrow(*cs)
+                .borrow(cs)
                 .borrow_mut()
                 .deallocate(NonNull::new_unchecked(ptr), layout)
         });
