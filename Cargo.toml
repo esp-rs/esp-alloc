@@ -25,23 +25,8 @@ categories = [
 default-target = "riscv32imc-unknown-none-elf"
 
 [dependencies]
-bare-metal = "1.0.0"
-
-[target.'cfg(target_arch = "riscv32")'.dependencies]
-linked_list_allocator = { version = "0.10.1", default-features = false, features = ["const_mut_refs"] }
-riscv                 = "0.8.0"
-
-[target.xtensa-esp32-none-elf.dependencies]
-linked_list_allocator = "0.10.1"
-xtensa-lx             = { version = "0.7.0",  features = ["esp32"] }
-
-[target.xtensa-esp32s2-none-elf.dependencies]
-linked_list_allocator = { version = "0.10.1", default-features = false, features = ["const_mut_refs"] }
-xtensa-lx             = { version = "0.7.0",  features = ["esp32s2"] }
-
-[target.xtensa-esp32s3-none-elf.dependencies]
-linked_list_allocator = "0.10.1"
-xtensa-lx             = { version = "0.7.0",  features = ["esp32s3"] }
+critical-section      = "1.1.0"
+linked_list_allocator = { version = "0.10.3", default-features = false, features = ["const_mut_refs"] }
 
 [features]
 # Provides a basic `#[alloc_error_handler]` which simply panics when an
