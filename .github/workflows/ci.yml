@@ -15,7 +15,7 @@ jobs:
     name: Check RISC-V
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -23,7 +23,7 @@ jobs:
           toolchain: nightly
           components: rust-src
           default: true
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/cargo@v1
         with:
           command: check
@@ -37,11 +37,11 @@ jobs:
         chip: [esp32, esp32s2, esp32s3]
     steps:
       - uses: actions/checkout@v2
-      - uses: esp-rs/xtensa-toolchain@v1.1
+      - uses: esp-rs/xtensa-toolchain@v1.5
         with:
           default: true
           ldproxy: false
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/cargo@v1
         with:
           command: check
