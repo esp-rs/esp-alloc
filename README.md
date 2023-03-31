@@ -1,13 +1,6 @@
 # esp-alloc
 
-A simple `no_std` heap allocator for RISC-V and Xtensa processors from Espressif.
-
-Currently supports:
-
-- ESP32
-- ESP32-C3
-- ESP32-S2
-- ESP32-S3
+A simple `no_std` heap allocator for RISC-V and Xtensa processors from Espressif. Supports ESP32, ESP32-C2/C3/C6, ESP32-H2, and ESP32-S2/S3.
 
 **NOTE:** using this as your global allocator requires using Rust's `nightly` release channel.
 
