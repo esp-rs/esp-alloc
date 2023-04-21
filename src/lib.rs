@@ -1,14 +1,11 @@
 //! A simple `no_std` heap allocator for RISC-V and Xtensa processors from
 //! Espressif.
 //!
-//! Currently supports:
-//! - ESP32
-//! - ESP32-C3
-//! - ESP32-S2
-//! - ESP32-S3
+//! A simple `no_std` heap allocator for RISC-V and Xtensa processors from
+//! Espressif. Supports all currently available ESP32 devices.
 //!
-//! __NOTE:__ using this as your global allocator requires using Rust's
-//! `nightly` release channel.
+//! **NOTE:** using this as your global allocator requires using Rust 1.68 or
+//! greater, or the `nightly` release channel.
 
 #![no_std]
 #![cfg_attr(feature = "oom-handler", feature(alloc_error_handler))]

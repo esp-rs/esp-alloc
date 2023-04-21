@@ -1,8 +1,14 @@
 # esp-alloc
 
-A simple `no_std` heap allocator for RISC-V and Xtensa processors from Espressif.
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/esp-rs/esp-alloc/ci.yml?label=CI&logo=github&style=flat-square)
+[![Crates.io](https://img.shields.io/crates/v/esp-alloc?color=C96329&logo=Rust&style=flat-square)](https://crates.io/crates/esp-alloc)
+[![docs.rs](https://img.shields.io/docsrs/esp-alloc?color=C96329&logo=rust&style=flat-square)](https://docs.rs/esp-alloc)
+![MSRV](https://img.shields.io/badge/MSRV-1.68-blue?style=flat-square)
+![Crates.io](https://img.shields.io/crates/l/esp-alloc?style=flat-square)
 
-**NOTE:** using this as your global allocator requires using Rust's `nightly` release channel.
+A simple `no_std` heap allocator for RISC-V and Xtensa processors from Espressif. Supports all currently available ESP32 devices.
+
+**NOTE:** using this as your global allocator requires using Rust 1.68 or greater, or the `nightly` release channel.
 
 ## License
 
