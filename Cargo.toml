@@ -1,6 +1,6 @@
 [package]
 name    = "esp-alloc"
-version = "0.2.0"
+version = "0.2.1"
 authors = [
     "Björn Quentin <bjoern.quentin@mobile-j.de>",
     "Jesse Braham <jesse@beta7.io>",
