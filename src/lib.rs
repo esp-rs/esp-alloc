@@ -1,14 +1,10 @@
 //! A simple `no_std` heap allocator for RISC-V and Xtensa processors from
-//! Espressif.
-//!
-//! A simple `no_std` heap allocator for RISC-V and Xtensa processors from
 //! Espressif. Supports all currently available ESP32 devices.
 //!
 //! **NOTE:** using this as your global allocator requires using Rust 1.68 or
 //! greater, or the `nightly` release channel.
 
 #![no_std]
-#![cfg_attr(feature = "oom-handler", feature(alloc_error_handler))]
 
 use core::{
     alloc::{GlobalAlloc, Layout},
@@ -18,12 +14,6 @@ use core::{
 
 use critical_section::Mutex;
 use linked_list_allocator::Heap;
-
-#[cfg(feature = "oom-handler")]
-#[alloc_error_handler]
-fn oom(_: core::alloc::Layout) -> ! {
-    panic!("Allocation failed, out of memory");
-}
 
 pub struct EspHeap {
     heap: Mutex<RefCell<Heap>>,

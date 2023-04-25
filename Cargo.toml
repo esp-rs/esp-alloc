@@ -28,13 +28,3 @@ default-target = "riscv32imc-unknown-none-elf"
 [dependencies]
 critical-section      = "1.1.1"
 linked_list_allocator = { version = "0.10.5", default-features = false, features = ["const_mut_refs"] }
-
-[features]
-# Provides a basic `#[alloc_error_handler]` which simply panics when an
-# allocation fails. If this feature is NOT enabled, which it is not by
-# default, then a handler needs to be defined in any binary depending on
-# this package.
-# As of Rust 1.68 the `default_alloc_error_handler` feature is enabled by
-# default, which will cause the compiler to automatically generate a handler
-# which panics when out of memory.
-oom-handler = []
