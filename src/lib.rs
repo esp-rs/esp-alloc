@@ -6,6 +6,8 @@
 
 #![no_std]
 
+pub mod macros;
+
 use core::{
     alloc::{GlobalAlloc, Layout},
     cell::RefCell,
