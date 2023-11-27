@@ -5,20 +5,15 @@
 /// You can only have ONE allocator at most
 #[macro_export]
 macro_rules! heap_allocator {
-    ($size:expr) => {
+    ($size:expr) => {{
         #[global_allocator]
         static ALLOCATOR: $crate::EspHeap = $crate::EspHeap::empty();
+        static mut HEAP: core::mem::MaybeUninit<[u8; $size]> = core::mem::MaybeUninit::uninit();
 
-        fn init_heap() {
-            static mut HEAP: core::mem::MaybeUninit<[u8; $size]> = core::mem::MaybeUninit::uninit();
-
-            unsafe {
-                ALLOCATOR.init(HEAP.as_mut_ptr() as *mut u8, $size);
-            }
+        unsafe {
+            ALLOCATOR.init(HEAP.as_mut_ptr() as *mut u8, $size);
         }
-
-        init_heap();
-    };
+    }};
 }
 
 /// Create a heap allocator backed by PSRAM
@@ -32,20 +27,14 @@ macro_rules! heap_allocator {
 /// ```
 #[macro_export]
 macro_rules! psram_allocator {
-    ($peripheral:expr,$psram_module:path) => {
+    ($peripheral:expr,$psram_module:path) => {{
         #[global_allocator]
         static ALLOCATOR: $crate::EspHeap = $crate::EspHeap::empty();
 
-        fn init_psram_heap() {
-            use $psram_module as _psram;
-            unsafe {
-                ALLOCATOR.init(_psram::psram_vaddr_start() as *mut u8, _psram::PSRAM_BYTES);
-            }
+        use $psram_module as _psram;
+        _psram::init_psram($peripheral);
+        unsafe {
+            ALLOCATOR.init(_psram::psram_vaddr_start() as *mut u8, _psram::PSRAM_BYTES);
         }
-        {
-            use $psram_module as _psram;
-            _psram::init_psram($peripheral);
-        }
-        init_psram_heap();
-    };
+    }};
 }
