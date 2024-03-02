@@ -22,6 +22,9 @@ categories = [
     "no-std",
 ]
 
+[features]
+nightly = []
+
 [package.metadata.docs.rs]
 default-target = "riscv32imc-unknown-none-elf"
 
