@@ -1,5 +1,11 @@
 # esp-alloc
 
+---
+
+## This project has moved! It can now be found in the [esp-rs/esp-hal](https://github.com/esp-rs/esp-hal/tree/main/esp-alloc) repository.
+
+---
+
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/esp-rs/esp-alloc/ci.yml?label=CI&logo=github&style=flat-square)
 [![Crates.io](https://img.shields.io/crates/v/esp-alloc?color=C96329&logo=Rust&style=flat-square)](https://crates.io/crates/esp-alloc)
 [![docs.rs](https://img.shields.io/docsrs/esp-alloc?color=C96329&logo=rust&style=flat-square)](https://docs.rs/esp-alloc)
